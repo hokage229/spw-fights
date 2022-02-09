@@ -6,8 +6,9 @@ server.all("/", (req, res) => {
     res.send("bot is running")
 })
 
+const port = process.env.PORT || 3000
 const keepAlive = () => {
-    server.listen(3000, () => {
+    server.listen(port, () => {
         console.log("server is ready")
     })
 }
