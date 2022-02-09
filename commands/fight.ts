@@ -5,12 +5,12 @@ export default {
     category: 'Fight',
     description: 'Try your luck to win SPW immunity',
     slash: true,
-    expectedArgs: 'Token Address',
-    expectedArgsTypes: ["STRING"],
     minArgs: 1,
+    expectedArgs: '<token-address>',
+    expectedArgsTypes: ["STRING"],
 
     callback: async ({interaction: msgInt, channel, args}) => {
-        const tokenAddress = args[0]
+        const [tokenAddress] = args
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
