@@ -1,8 +1,8 @@
-import express from 'express'
+import express, {Request, Response} from 'express'
 
 const server = express()
 
-server.all("/", (req, res) => {
+server.all("/", (req: Request, res: Response) => {
     res.send("bot is running")
 })
 
