@@ -20,5 +20,5 @@ client.on('ready', async () => {
     })
 })
 
-server.keepAlive()
+// server.keepAlive()
 client.login(process.env.TOKEN)

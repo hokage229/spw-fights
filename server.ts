@@ -3,7 +3,7 @@ import express from 'express'
 const server = express()
 
 server.all("/", (req, res) => {
-    res.send("bot is runnint")
+    res.send("bot is running")
 })
 
 const keepAlive = () => {

@@ -1,5 +1,5 @@
 import {ICommand} from "wokcommands";
-import {ButtonInteraction, Interaction, MessageActionRow, MessageButton} from "discord.js";
+import {Interaction, MessageActionRow, MessageButton} from "discord.js";
 
 export default {
     category: 'Fight',
