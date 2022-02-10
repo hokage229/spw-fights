@@ -1,16 +1,13 @@
 import {ICommand} from "wokcommands";
-import {Interaction, MessageActionRow, MessageButton} from "discord.js";
+import {Channel, Interaction, MessageActionRow, MessageButton, Role} from "discord.js";
 
 export default {
     category: 'Fight',
     description: 'Try your luck to win SPW immunity',
     slash: true,
-    minArgs: 1,
-    expectedArgs: '<token-address>',
-    expectedArgsTypes: ["STRING"],
+    guildOnly: true,
 
-    callback: async ({interaction: msgInt, channel, args}) => {
-        const [tokenAddress] = args
+    callback: async ({interaction: msgInt, channel, guild}) => {
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
@@ -45,11 +42,23 @@ export default {
                 console.log(click.user.id, click.customId)
             })
 
+            const member = guild!.members.cache.get(msgInt.user.id)
+            const role = guild?.roles.cache.find(role => role.name === 'Immunity') as Role;
+            const channel = guild?.channels.cache.find(channel => channel.name === 'immunity')
+
+            if (!member) return console.log(`Can't find member with ID "${member}"`);
+            if (!role) return console.log(`Can't find role with ID "${role}"`);
+            if (!channel) return console.log(`Can't find channel with ID "${channel}"`);
+
             if (collection.first()?.customId === 'scratch' || collection.first()?.customId === 'bite') {
+                const win = fight()
                 await msgInt.editReply({
-                    content: getContent(tokenAddress, msgInt),
+                    content: getContent(win, msgInt, channel),
                     components: []
                 })
+                if (win) {
+                    member?.roles.add(role)
+                }
             } else {
                 await msgInt.editReply({
                     content: `${msgInt.user} thought too long and was killed`,
@@ -60,9 +69,9 @@ export default {
     }
 } as ICommand
 
-const getContent = (tokenAddress: string, msgInt: Interaction) => {
-    return fight()
-        ? `${msgInt.user} defeated enemy! Congratulations🎉! Now the token **${tokenAddress}** has immunity in SPW`
+const getContent = (win: boolean, msgInt: Interaction, channel: Channel) => {
+    return win
+        ? `${msgInt.user} defeated enemy! Congratulations🎉! Now you have **Immunity** role. Visit ${channel.toString()}`
         : `Enemy dodged and killed ${msgInt.user}☠! Better luck next time`
 }
 

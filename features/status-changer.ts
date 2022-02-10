@@ -14,7 +14,7 @@ export default (client: Client) => {
         })
 
 
-        setTimeout(updateStatus, 1000 * 60 * 60)
+        setTimeout(updateStatus, 1000 * 60 * 60 * 6)
     }
 
 
@@ -26,7 +26,7 @@ const getStatus = async () => {
     let url = "https://raw.githubusercontent.com/Vakurin/SPW-Change-Metadata/main/data/alive_mint_ids.json";
     const res = await fetch(url, settings)
     console.log('status changed')
-    return `SPW (Alive Pets:${(await res.json()).length})`
+    return `SPW (Alive Pets: ${(await res.json()).length})`
 }
 
 export const config = {
