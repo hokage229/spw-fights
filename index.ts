@@ -12,6 +12,7 @@ client.on('ready', async () => {
     console.log(`Logged in as ${client.user?.tag}!`)
     new WOKCommands(client, {
         commandDir: path.join(__dirname, 'commands'),
+        featureDir: path.join(__dirname, 'features'),
         typeScript: true,
     })
 })

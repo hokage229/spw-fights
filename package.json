@@ -7,7 +7,7 @@
     "start": "ts-node --files index.ts",
     "postinstall": "tsc",
     "build": "tsc",
-    "dev": "nodemon -x ts-node --files index.ts"
+    "dev": "nodemon -x ts-node index.ts"
   },
   "keywords": [],
   "author": "",

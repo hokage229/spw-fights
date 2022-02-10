@@ -56,7 +56,6 @@ export default {
                     components: []
                 })
             }
-
         })
     }
 } as ICommand
@@ -64,7 +63,7 @@ export default {
 const getContent = (tokenAddress: string, msgInt: Interaction) => {
     return fight()
         ? `${msgInt.user} defeated enemy! Congratulations🎉! Now the token **${tokenAddress}** has immunity in SPW`
-        : `Enemy dodged and killed ${msgInt.user}!☠ Better luck next time`
+        : `Enemy dodged and killed ${msgInt.user}☠! Better luck next time`
 }
 
 const fight = () => {
