@@ -8,7 +8,7 @@ export default {
     guildOnly: true,
 
     callback: async ({interaction: msgInt, channel, guild}) => {
-        const correctChannel = guild?.channels.cache.find(channel => channel.name === 'fights')
+        const correctChannel = guild?.channels.cache.find(channel => channel.name === 'spw-bot-fights')
         if (correctChannel != channel) return console.log(`Incorrect channel "${channel}"`);
 
         const row = new MessageActionRow()
