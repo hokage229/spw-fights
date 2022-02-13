@@ -47,7 +47,7 @@ export default {
 
             const member = guild!.members.cache.get(msgInt.user.id)
             const role = guild?.roles.cache.find(role => role.name === 'Immunity') as Role;
-            const channel = guild?.channels.cache.find(channel => channel.name === 'immunity')
+            const channel = guild?.channels.cache.find(channel => channel.name === '🛡│spw-immunity')
 
             if (!member) return console.log(`Can't find member with ID "${member}"`);
             if (!role) return console.log(`Can't find role with ID "${role}"`);
