@@ -1,6 +1,9 @@
 import {ICommand} from "wokcommands";
 import {Channel, Interaction, MessageActionRow, MessageButton, Role} from "discord.js";
 
+let Timer = new Map<string, Date>();
+const COOLDOWN = 12
+
 export default {
     category: 'Fight',
     description: 'Try your luck to win SPW immunity',
@@ -10,6 +13,18 @@ export default {
     callback: async ({interaction: msgInt, channel, guild}) => {
         const correctChannel = guild?.channels.cache.find(channel => channel.name === '⚔│spw-bot-fights')
         if (correctChannel != channel) return console.log(`Incorrect channel "${channel}"`);
+
+        if (Timer.has(msgInt.user.id)) {
+            const hours = Math.abs(Timer.get(msgInt.user.id)!.getTime() - Date.now()) / 3600000
+            if (hours < COOLDOWN) {
+                const h = Math.abs(COOLDOWN - hours); // Change to positive
+                const m = (h - Math.floor(h)) * 60
+                await msgInt.reply({
+                    content: `${msgInt.user}, before u next fight **${Math.floor(h)} H** **${Math.floor(m)} M**`
+                })
+                return console.log(`before next battle "${COOLDOWN - hours}"`);
+            }
+        }
 
         const row = new MessageActionRow()
             .addComponents(
@@ -23,7 +38,7 @@ export default {
                     .setCustomId('bite')
                     .setLabel('BITE🐶 him')
                     .setStyle('DANGER')
-            )
+            );
 
         await msgInt.reply({
             content: `${msgInt.user} entered the ⚔ battlefields\n` +
@@ -37,7 +52,7 @@ export default {
         const collector = channel.createMessageComponentCollector({
             filter,
             max: 1,
-            time: 1000 * 30
+            time: 1000 * 15
         })
 
         collector.on('end', async (collection) => {
@@ -68,6 +83,7 @@ export default {
                     components: []
                 })
             }
+            Timer.set(msgInt.user.id, new Date())
         })
     }
 } as ICommand
