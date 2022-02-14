@@ -4,7 +4,7 @@ import {Channel, Interaction, MessageActionRow, MessageButton, Role} from "disco
 export default {
     category: 'Fight',
     description: 'Try your luck to win SPW immunity',
-    slash: true,
+    slash: false,
     guildOnly: true,
 
     callback: async ({interaction: msgInt, channel, guild}) => {
