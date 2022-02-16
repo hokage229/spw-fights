@@ -90,8 +90,8 @@ export default {
 
 const getContent = (win: boolean, msgInt: Interaction, channel: Channel) => {
     return win
-        ? `${msgInt.user} defeated enemy! Congratulations🎉! Now you have **Immunity** role. Visit ${channel.toString()}`
-        : `Enemy dodged and killed ${msgInt.user}☠! Better luck next time`
+        ? `You win! ${msgInt.user} defeated enemy! Congratulations🎉! Now you have **Immunity** role. Visit ${channel.toString()}!`
+        : `You lose! Enemy dodged and killed ${msgInt.user}☠! Better luck next time!`
 }
 
 const fight = () => {
