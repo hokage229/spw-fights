@@ -95,7 +95,7 @@ const getContent = (win: boolean, msgInt: Interaction, channel: Channel) => {
 }
 
 const fight = () => {
-    const probWin = 0.1
+    const probWin = 0.07
 
     return Math.random() <= probWin
 }
