@@ -90,7 +90,7 @@ export default {
 
 const getContent = (win: boolean, msgInt: Interaction, channel: Channel) => {
     return win
-        ? `You win! ${msgInt.user} defeated enemy! Congratulations🎉! Now you have **Immunity** role. Visit ${channel.toString()}!`
+        ? `You win! ${msgInt.user} defeated enemy! Congratulations🎉! Now you have **Immunity** role. Send your NFT number in ${channel.toString()}!`
         : `You lose! Enemy dodged and killed ${msgInt.user}☠! Better luck next time!`
 }
 
